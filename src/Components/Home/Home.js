@@ -5,10 +5,15 @@ import './Home.css';
 export default class Home extends Component {
     render() {
         return (
-            <div>
-                HOME PAGE
+            <div className={"loginContainer"}>
+                <div>
+                    <input type="text" placeholder="Hola"/>
+                </div>
+                <div>
+                    <input type="text" />
+                </div>
                 <Link to="/chat">
-                    <button>Ir a chat</button>
+                    <button className="button">Ir a chat</button>
                 </Link>
             </div>
         );

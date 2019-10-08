@@ -10,6 +10,7 @@ const miniCssExtractPlugin = new MiniCssExtractPlugin({
     chunkFilename: '[id].css'
 });
 module.exports = {
+    mode: 'development',
     entry: './src/index.js',
     output: { // NEW
         path: path.join(__dirname, 'public'),
