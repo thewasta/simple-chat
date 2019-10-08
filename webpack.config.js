@@ -2,7 +2,8 @@ const HtmlWebPackPlugin = require('html-webpack-plugin');
 const path = require('path');
 const htmlPlugin = new HtmlWebPackPlugin({
     template: './src/index.html',
-    filename: './index.html'
+    filename: './index.html',
+    favicon: 'src/img/favicon.png'
 });
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const miniCssExtractPlugin = new MiniCssExtractPlugin({
@@ -10,7 +11,6 @@ const miniCssExtractPlugin = new MiniCssExtractPlugin({
     chunkFilename: '[id].css'
 });
 module.exports = {
-    mode: 'development',
     entry: './src/index.js',
     output: { // NEW
         path: path.join(__dirname, 'public'),
@@ -45,12 +45,11 @@ module.exports = {
             },
             {
                 test: /\.(png|svg|jpg|gif)$/,
-                use: {
-                    loader: 'url-loader',
-                    options: {
-                        limit: 25000
+                use: [
+                    {
+                        loader: 'file-loader?name=[name].[ext]'
                     }
-                }
+                ]
             }
         ]
     }

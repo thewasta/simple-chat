@@ -1,5 +1,70 @@
 .loginContainer {
+    display: flex;
+    align-items: center;
+    min-height: 100vh;
+    justify-content: center;
+}
+
+.loginContainer .box {
+    background-color: #fff;
+    border-radius: 5px;
     border: 1px solid #fff;
+    color: #243A46;
     width: 300px;
-    height: 500px;
+    height: 270px;
+    padding: 20px;
+    box-sizing: border-box;
+    box-shadow: 8px 14px 11px rgba(0, 0, 0, .3)
+}
+
+.loginContainer .box h2 {
+    margin: 0 0 20px 40px;
+    padding: 0;
+    text-transform: uppercase;
+}
+
+.loginContainer .box input {
+    padding: 10px 0;
+    margin-bottom: 20px;
+    width: 100%;
+    box-sizing: border-box;
+    box-shadow: none;
+    outline: none;
+    border: none;
+    border-bottom: 2px solid #999;
+}
+
+.loginContainer .box input[type=submit] {
+    cursor: pointer;
+    border-bottom: none;
+    background: #3A6073;
+    color: #ffffff;
+    margin-bottom: 0;
+    text-transform: uppercase;
+}
+
+.loginContainer .box form div {
+    position: relative;
+}
+
+.loginContainer .box form div label {
+    position: absolute;
+    left: 0;
+    top: 12px;
+    pointer-events: none;
+    color: #999;
+    transition: .5s ease;
+}
+
+.loginContainer .box input:focus ~ label,
+.loginContainer .box input:valid ~ label{
+    top: -10px;
+    left: 0;
+    color: #243A46;
+    font-size: 13px;
+    font-weight: bold;
+}
+.loginContainer .box input:focus,
+.loginContainer .box input:valid{
+    border-bottom: 2px solid #3A6073;
 }
