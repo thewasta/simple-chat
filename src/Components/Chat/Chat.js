@@ -3,7 +3,7 @@ import './Chat.css'
 export default class Chat extends Component {
     render() {
         return (
-            <div>
+            <div id="chat">
                 Chat PAGE
             </div>
         );
