@@ -2,18 +2,16 @@ const express = require('express'),
     http = require('http'),
     socketio = require('socket.io'),
     morgan = require('morgan'),
-    {PORT, DIST_DIR} = require('./config/settings'),
-    {router} = require('./route/route'),
     bodyparser = require('body-parser'),
     webpack = require('webpack'),
-    webpackconfig = require('../webpack.config.js'),
     webpackdevmiddleware = require('webpack-dev-middleware'),
-    app = express();
-
-const {onConnect} = require('./io/index');
-
-const server = http.createServer(app);
-const io = socketio(server);
+    app = express(),
+    webpackconfig = require('../webpack.config.js'),
+    {PORT, DIST_DIR} = require('./config/settings'),
+    {router} = require('./route/route'),
+    server = http.createServer(app),
+    io = socketio(server),
+    {onConnect} = require('./io/index');
 
 app.use(morgan('dev'));
 app.use(webpackdevmiddleware(webpack(webpackconfig)));
