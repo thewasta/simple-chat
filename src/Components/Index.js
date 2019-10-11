@@ -3,10 +3,11 @@ import {BrowserRouter as Router, Route} from 'react-router-dom';
 import Home from './Home/Home';
 import Chat from './Chat/Chat';
 import io from 'socket.io-client';
-import './Index.css';
+import './Index.scss';
 
 export default class Index extends Component {
     componentDidMount() {
+        console.log($)
         this.socket = io();
     }
 
