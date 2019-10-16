@@ -1,18 +1,25 @@
-const HtmlWebPackPlugin = require('html-webpack-plugin');
 const path = require('path');
+const HtmlWebPackPlugin = require('html-webpack-plugin');
 const OptimizeCssAsset = require('optimize-css-assets-webpack-plugin');
 const TerserJSPlugin = require('terser-webpack-plugin');
-
+const WebpackAssetsManifest = require('webpack-assets-manifest');
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const htmlPlugin = new HtmlWebPackPlugin({
     template: './src/index.html',
     filename: './index.html',
     favicon: 'src/img/favicon.png'
 });
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
+const webpackManifestPlugin = new WebpackAssetsManifest({
+    output: 'manifest.json',
+});
+
 const miniCssExtractPlugin = new MiniCssExtractPlugin({
     filename: 'bundle.css',
     chunkFilename: '[id].css'
 });
+
 module.exports = {
     entry: './src/index.js',
     output: { // NEW
@@ -20,7 +27,12 @@ module.exports = {
         filename: 'bundle.js',
         publicPath: '/'
     }, // NEW Ends
-    plugins: [htmlPlugin, miniCssExtractPlugin],
+    plugins: [
+        htmlPlugin,
+        miniCssExtractPlugin,
+        webpackManifestPlugin,
+        new CleanWebpackPlugin()
+    ],
     module: {
         rules: [
             {
@@ -56,7 +68,7 @@ module.exports = {
     },
     optimization: {
         minimizer: [
-            new TerserJSPlugin({}),new OptimizeCssAsset({})
+            new TerserJSPlugin({}), new OptimizeCssAsset({})
         ]
     }
 };
